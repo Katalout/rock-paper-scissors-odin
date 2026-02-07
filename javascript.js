@@ -54,31 +54,47 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-
-playRound(getHumanChoice(), getComputerChoice());
-console.log(`Current score:
+function playGame() {
+    playRound(getHumanChoice(), getComputerChoice());
+    console.log(`Current score:
 you -> ${humanScore}
 computer -> ${computerScore}`);
 
-
-playRound(getHumanChoice(), getComputerChoice());
-console.log(`Current score:
+    playRound(getHumanChoice(), getComputerChoice());
+    console.log(`Current score:
 you -> ${humanScore}
 computer -> ${computerScore}`);
 
-
-playRound(getHumanChoice(), getComputerChoice());
-console.log(`Current score:
+    playRound(getHumanChoice(), getComputerChoice());
+    console.log(`Current score:
 you -> ${humanScore}
 computer -> ${computerScore}`);
 
-
-playRound(getHumanChoice(), getComputerChoice());
-console.log(`Current score:
+    playRound(getHumanChoice(), getComputerChoice());
+    console.log(`Current score:
 you -> ${humanScore}
 computer -> ${computerScore}`);
 
-playRound(getHumanChoice(), getComputerChoice());
-console.log(`Current score:
+    playRound(getHumanChoice(), getComputerChoice());
+
+    if (humanScore > computerScore) {
+        console.log(`Yayy, you won the game!
+Final score:
 you -> ${humanScore}
 computer -> ${computerScore}`);
+    }
+    else if (humanScore < computerScore) {
+        console.log(`Oh no, you lost the game!
+Final score:
+you -> ${humanScore}
+computer -> ${computerScore}`);
+    }
+    else {
+        console.log(`Well, this looks like a tie.
+Final score:
+you -> ${humanScore}
+computer -> ${computerScore}`);
+    }
+}
+
+playGame();
