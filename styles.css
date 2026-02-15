@@ -1,0 +1,85 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(247, 233, 216);
+    color: rgb(102, 46, 46);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 247, 234);
+    width: 450px;
+    height: 450px;
+    border: solid grey 5px;
+    border-radius: 20px;
+}
+
+.buttons {
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+h1 {
+    margin: 0;
+}
+
+button {
+    padding: 5px;
+    width: 100px;
+    font-weight: bold;
+    font-size: 22px;
+    background-color: rgba(95, 158, 160, 0.5);
+    border: 2px solid grey;
+    border-radius: 5px;
+    color: rgb(59, 57, 57);
+    flex: 1;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.score-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    font-size: 10px;
+    text-align: center;
+}
+
+.score {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.gameover {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(121, 16, 94);
+    border: 2px groove gray;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+
+}

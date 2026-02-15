@@ -19,13 +19,21 @@ function getComputerChoice() {
 
 // function to prompt for human's choice
 
+let humanScore = 0;
+let computerScore = 0;
+
 const buttonRock = document.querySelector(".rock")
 const buttonPaper = document.querySelector(".paper")
 const buttonScissors = document.querySelector(".scissors")
 
 const buttons = document.querySelectorAll("button");
 
-const div = document.querySelector("div");
+const stat = document.querySelector(".stat");
+
+const humansScore = document.querySelector("#human-score");
+const computersScore = document.querySelector("#computer-score");
+
+
 
 buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -33,17 +41,12 @@ buttons.forEach((button) => {
         let computersChoice = getComputerChoice();
         console.log("u picked " + humansChoice);
         console.log("computer picked " + computersChoice);
-        let para = document.createElement("p");
-        para.textContent += ` -- u picked ${humansChoice},
-                            computer picked ${computersChoice} -- `;
-        div.appendChild(para);
         playRound(humansChoice, computersChoice);
-        if ((humanScore === 5) || (computerScore === 5)) {
-            let para = document.createElement("h1");
-            para.textContent += `GAME OVER`;
-            para.style.textAlign = "center";
-            para.style.color = "purple";
-            div.appendChild(para);
+        if ((humanScore === 2)) {
+            stat.textContent = "Game over! Congrats, you won!";
+        } else if (computerScore === 2) {
+            stat.textContent = "Game over! Computer won!";
+            stat.classList.add("gameover");
         }
     })
 })
@@ -53,8 +56,7 @@ buttons.forEach((button) => {
 
 // create variables for scores
 
-let humanScore = 0;
-let computerScore = 0;
+
 
 // create function for a round
 //  - 2 arguments: humanChoice and computerChoice
@@ -66,29 +68,21 @@ let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        let para = document.createElement("p");
-        para.textContent += "   Draw, because " + humanChoice + " and " + computerChoice + " are pals :-)";
-        div.appendChild(para);
+        stat.textContent = "Draw!";
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        let para = document.createElement("p");
-        para.textContent += "   You win this round, because your " + humanChoice + " beats computer's " + computerChoice + " B-)";
-        div.appendChild(para);
+        stat.textContent = "You win this round!";
         // incrementing could also look like humanScore += 1 but i like the ++
         humanScore++;
     } else {
-        let para = document.createElement("p");
-        para.textContent += "   You lose this round, because your " + humanChoice + " is destroyed by computer's " + computerChoice + " :,-(";
-        div.appendChild(para);
+        stat.textContent = "Computer wins this round!";
         computerScore++;
     }
-    let para = document.createElement("p");
-    para.textContent += " current score: You: " + humanScore + " Computer: " + computerScore;
-    para.style.textAlign = "center";
-    div.appendChild(para);
+    humansScore.textContent = humanScore;
+    computersScore.textContent = computerScore;
 }
 
 
