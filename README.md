@@ -11,6 +11,6 @@ javascript practice
     - return input.
 3) Combine these into a single round:
     -
-...
-Well I can't be arsed to do this, or the comments, but i might do it later. MIGHTT.
+...meh.
+Well I can't be arsed to do this, but i might do it later. MIGHTT.
 

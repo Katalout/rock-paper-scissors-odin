@@ -19,10 +19,36 @@ function getComputerChoice() {
 
 // function to prompt for human's choice
 
-function getHumanChoice() {
-    let choice = prompt("Rock, paper or scissors?", "rock").toLowerCase();
-    return choice;
-}
+const buttonRock = document.querySelector(".rock")
+const buttonPaper = document.querySelector(".paper")
+const buttonScissors = document.querySelector(".scissors")
+
+const buttons = document.querySelectorAll("button");
+
+const div = document.querySelector("div");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        let humansChoice = button.textContent;
+        let computersChoice = getComputerChoice();
+        console.log("u picked " + humansChoice);
+        console.log("computer picked " + computersChoice);
+        let para = document.createElement("p");
+        para.textContent += ` -- u picked ${humansChoice},
+                            computer picked ${computersChoice} -- `;
+        div.appendChild(para);
+        playRound(humansChoice, computersChoice);
+        if ((humanScore === 5) || (computerScore === 5)) {
+            let para = document.createElement("h1");
+            para.textContent += `GAME OVER`;
+            para.style.textAlign = "center";
+            para.style.color = "purple";
+            div.appendChild(para);
+        }
+    })
+})
+
+
 // to test: console.log(getHumanChoice());
 
 // create variables for scores
@@ -40,79 +66,38 @@ let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        console.log("Draw, because " + humanChoice + " and " + computerChoice + " are pals :-)");
+        let para = document.createElement("p");
+        para.textContent += "   Draw, because " + humanChoice + " and " + computerChoice + " are pals :-)";
+        div.appendChild(para);
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log("You win this round, because your " + humanChoice + " beats computer's " + computerChoice + " B-)");
+        let para = document.createElement("p");
+        para.textContent += "   You win this round, because your " + humanChoice + " beats computer's " + computerChoice + " B-)";
+        div.appendChild(para);
         // incrementing could also look like humanScore += 1 but i like the ++
         humanScore++;
     } else {
-        console.log("You lose this round, because your " + humanChoice + " is destroyed by computer's " + computerChoice + " :,-(");
+        let para = document.createElement("p");
+        para.textContent += "   You lose this round, because your " + humanChoice + " is destroyed by computer's " + computerChoice + " :,-(";
+        div.appendChild(para);
         computerScore++;
     }
+    let para = document.createElement("p");
+    para.textContent += " current score: You: " + humanScore + " Computer: " + computerScore;
+    para.style.textAlign = "center";
+    div.appendChild(para);
 }
 
-// lazy solution: just copy paste the function of round (+status message) 5 times
-// wrap them in the playgame function, add the final message to the end and bam you've got the game :D
-
-function playGame() {
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log(`Current score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log(`Current score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log(`Current score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log(`Current score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-
-    playRound(getHumanChoice(), getComputerChoice());
-
-    if (humanScore > computerScore) {
-        console.log(`Yayy, you won the game!
-Final score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-    }
-    else if (humanScore < computerScore) {
-        console.log(`Oh no, you lost the game!
-Final score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-    }
-    else {
-        console.log(`Well, this looks like a tie.
-Final score:
-    you -> ${humanScore}
-    computer -> ${computerScore}`);
-    }
-}
-
-// playGame(); to play it
-
-/* now for some fancier solution*/
 
 function playGame2() {
-    for (let i = 1; i <= 5; i++) {
-        //still don't know why Odin instructs to put getHumanChoice() and getComputerChoice() into new variables and put those to the playRound parameters.. is it just to make it look prettier, or is there some kind of performance reason?
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log(`   Current score:
+    playRound(getHumanChoice(), getComputerChoice());
+    console.log(`   Current score:
         you -> ${humanScore}
         computer -> ${computerScore}`);
-    }
+
     if (humanScore > computerScore) {
         console.log(" -- Yayy, you won the game! -- ")
     }
